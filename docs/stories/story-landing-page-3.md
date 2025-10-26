@@ -34,9 +34,20 @@ so that **I can make an informed decision and convert into a user**.
 ## Tasks / Subtasks
 
 ### Install Shadcn UI Components (AC: #5)
-- [ ] Run `npx shadcn@latest init` to initialize Shadcn UI
+
+**Choose your installation method:**
+
+**Option A: Using Shadcn MCP (if available):**
+- [ ] Say: "Initialize shadcn in my project" (if not done in Story 1)
+- [ ] Say: "Add accordion component to my project"
+- [ ] Verify Shadcn components folder created and configured
+
+**Option B: Traditional CLI:**
+- [ ] Run `npx shadcn@latest init` to initialize Shadcn UI (if not done in Story 1)
 - [ ] Run `npx shadcn@latest add accordion` for FAQ component
 - [ ] Verify Shadcn components folder created and configured
+
+**Both methods:**
 - [ ] Test accordion component in isolation
 
 ### Pricing Section (AC: #1, #2, #3, #4)
@@ -185,6 +196,7 @@ Complete the landing page by implementing the final conversion-focused sections:
 
 **Key Technical Decisions:**
 - Shadcn UI Accordion for FAQ (Radix UI under the hood) - customize with borderless style
+- Component installation: Use Shadcn MCP (natural language: "Add accordion component") or traditional CLI (npx shadcn@latest add accordion)
 - Framer Motion for all animations (motion/react import)
 - Cloudflare Workers deployment (not Pages) for SSR support
 - Custom domain with automatic Cloudflare DNS + TLS setup

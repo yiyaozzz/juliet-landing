@@ -1,6 +1,6 @@
 # Story: Project Setup & Structure
 
-Status: Draft
+Status: ready-for-dev
 
 ## Story
 
@@ -28,6 +28,9 @@ so that **I can efficiently build the landing page components with type safety a
 - [ ] Install core dependencies: lucide-react@0.468.0, framer-motion@12.23.24 (import as motion/react)
 - [ ] Install animation library: tw-animate-css (Tailwind v4 compatible)
 - [ ] Install Prettier: prettier@3.4.2, prettier-plugin-tailwindcss
+- [ ] Install Shadcn UI components (choose method):
+  - Option A (MCP): Say "Initialize shadcn in my project" then "Add button, card, accordion components"
+  - Option B (CLI): Run `npx shadcn@latest init` and `npx shadcn@latest add button card accordion`
 - [ ] Configure TypeScript strict mode in tsconfig.json
 - [ ] Create .prettierrc with semi, trailingComma, singleQuote, tabWidth settings
 
@@ -42,7 +45,7 @@ so that **I can efficiently build the landing page components with type safety a
 - [ ] Configure tailwind.config.ts with design tokens:
   - [ ] Add colors: background (#fffdf6), primary (#f9d544), secondary (#cab5d4), accent (#ffe362)
   - [ ] Add custom box shadows: soft (0 2px 8px rgba 0.08), hover (0 4px 16px rgba 0.12)
-  - [ ] Configure font family with Inter variable font
+  - [ ] Configure font family with Poppins variable font (--font-poppins)
 - [ ] Update app/globals.css with:
   - [ ] CSS custom properties (--background, --primary, --secondary, --accent)
   - [ ] Body background and text color
@@ -60,6 +63,9 @@ so that **I can efficiently build the landing page components with type safety a
 
 ### Base Application Structure (AC: #6, #7)
 - [ ] Implement app/layout.tsx with root HTML structure, metadata, and global styles
+  - [ ] Import Poppins font from 'next/font/google' with weights [400, 600, 700]
+  - [ ] Configure Poppins with subsets: ["latin"], variable: "--font-poppins"
+  - [ ] Add className={poppins.variable} to <html> element
 - [ ] Implement app/page.tsx with main landing page component skeleton
 - [ ] Create app/globals.css with Tailwind directives and base styles
 - [ ] Create lib/constants.ts with placeholder structure for copy, testimonials, pricing data
@@ -81,6 +87,7 @@ Initialize a modern Next.js 16 project with the App Router architecture, TypeScr
 **Design System:**
 - **Aesthetic:** Premium minimalism with borderless, clean design
 - **Color Palette:** Warm cream background (#fffdf6), warm yellow primary (#f9d544), soft lavender secondary (#cab5d4), bright yellow accent (#ffe362)
+- **Typography:** Poppins font (weights: 400, 600, 700) for clean, modern feel
 - **Design Principles:** No borders, subtle shadows for depth, generous white space, clean typography
 
 **Key Technical Decisions:**
@@ -94,7 +101,8 @@ Initialize a modern Next.js 16 project with the App Router architecture, TypeScr
 ### Project Structure Notes
 
 - **Files to create:**
-  - app/layout.tsx, app/page.tsx, app/globals.css
+  - app/layout.tsx (with Poppins font import from next/font/google)
+  - app/page.tsx, app/globals.css
   - components/sections/ (empty directory)
   - components/ui/ (empty directory)
   - lib/constants.ts, lib/cloudflare-image-loader.ts
@@ -119,7 +127,7 @@ Initialize a modern Next.js 16 project with the App Router architecture, TypeScr
 
 ### Context Reference
 
-<!-- Path(s) to story context XML will be added here by context workflow -->
+- docs/stories/story-landing-page-1.context.md
 
 ### Agent Model Used
 

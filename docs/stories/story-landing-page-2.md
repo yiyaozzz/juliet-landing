@@ -12,7 +12,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 
 1. **AC1:** HeroSection.tsx displays full viewport height hero with headline, subheadline, CTA button, and gradient background
 2. **AC2:** Hero section is fully responsive (mobile < 768px, tablet 768-1024px, desktop > 1024px)
-3. **AC3:** SocialProofSection.tsx displays 2-3 testimonial cards with customer quotes, names, roles, and optional avatars
+3. **AC3:** SocialProofSection.tsx displays a series of 5 testimonial cards with customer quotes, names, roles, and avatars in a row. This row should slowly animate left and it's infinite marquees.
 4. **AC4:** Testimonials use horizontal scroll on mobile and grid layout on desktop
 5. **AC5:** ProblemSolutionSection.tsx shows "Old Way" vs "New Way" comparison in two-column layout (desktop) / stacked (mobile)
 6. **AC6:** Visual contrast between old/new using color scheme as specified
@@ -29,6 +29,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 ## Tasks / Subtasks
 
 ### Reusable UI Components (AC: #10, #11)
+
 - [ ] Create components/ui/Button.tsx with variants:
   - [ ] Primary: bg-primary (#f9d544), no border, shadow-soft, hover:shadow-hover
   - [ ] Secondary: bg-white, no border, shadow-soft, text-gray-900
@@ -42,6 +43,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Test components in isolation
 
 ### Hero Section (AC: #1, #2, #12)
+
 - [ ] Create components/sections/HeroSection.tsx
 - [ ] Implement full viewport height layout (min-h-screen)
 - [ ] Background: bg-background (#fffdf6) with subtle radial gradient overlay
@@ -54,6 +56,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Premium minimalist aesthetic: lots of white space, clean typography
 
 ### Social Proof Section (AC: #3, #4)
+
 - [ ] Create components/sections/SocialProofSection.tsx
 - [ ] Implement testimonial card layout with quote, name, role
 - [ ] Add optional avatar support to testimonial cards
@@ -63,6 +66,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Style cards using Card.tsx component
 
 ### Problem vs Solution Section (AC: #5, #6)
+
 - [ ] Create components/sections/ProblemSolutionSection.tsx
 - [ ] Implement two-column layout for desktop (grid-cols-2)
 - [ ] Implement stacked layout for mobile
@@ -72,6 +76,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Add content to lib/constants.ts (old way vs new way points)
 
 ### Benefits Section (AC: #7, #8)
+
 - [ ] Create components/sections/BenefitsSection.tsx
 - [ ] Implement 2x2 grid for desktop (grid-cols-2 grid-rows-2)
 - [ ] Implement stacked layout for mobile (grid-cols-1)
@@ -81,6 +86,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Add benefits data to lib/constants.ts (4 benefits with icons, titles, descriptions)
 
 ### How It Works Section (AC: #9)
+
 - [ ] Create components/sections/HowItWorksSection.tsx
 - [ ] Implement 4-step process visualization
 - [ ] Add numbered step indicators (1, 2, 3, 4)
@@ -90,6 +96,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Add steps data to lib/constants.ts (4 steps with numbers, titles, descriptions)
 
 ### Content Integration (AC: #14)
+
 - [ ] Update lib/constants.ts with all section content:
   - Hero: headline, subheadline, CTA text
   - Testimonials: 2-3 testimonial objects
@@ -100,6 +107,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Verify all constants export correctly
 
 ### Animations & Polish (AC: #13)
+
 - [ ] Add Framer Motion animations to Hero (fade in, slide up)
 - [ ] Add stagger animations to testimonial cards
 - [ ] Add hover animations to benefit cards
@@ -108,6 +116,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Ensure animations respect prefers-reduced-motion
 
 ### Responsive Testing (AC: #15)
+
 - [ ] Test Hero section at all breakpoints
 - [ ] Test Social Proof horizontal scroll on mobile
 - [ ] Test Problem/Solution column stacking
@@ -116,6 +125,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [ ] Fix any layout issues found during testing
 
 ### Integration & Verification (AC: #2, #12, #13, #14, #15)
+
 - [ ] Import all 5 sections into app/page.tsx
 - [ ] Verify sections render in correct order
 - [ ] Test smooth scroll between sections
@@ -130,12 +140,14 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 Build the core value proposition sections of the landing page using React Server Components and Tailwind CSS. Create two reusable UI components (Button, Card) that will be used throughout the page with the **premium minimalist, borderless aesthetic**. Implement 5 key sections that communicate Juliet's value: Hero (first impression + CTA), Social Proof (testimonials), Problem/Solution (comparison), Benefits (key value props), and How It Works (process explanation). All sections must be fully responsive with mobile-first design, smooth animations using Framer Motion (imported as `motion/react`), and content driven from TypeScript constants for easy maintainability.
 
 **Design System Application:**
+
 - **Color Palette:** Use bg-background (#fffdf6), bg-primary (#f9d544), bg-secondary (#cab5d4), bg-accent (#ffe362)
 - **Borderless Design:** No borders on cards/buttons - use shadow-soft and shadow-hover for depth
 - **White Space:** Generous padding and margins for premium feel
 - **Typography:** Clean, large headlines with good letter-spacing
 
 **Key Technical Decisions:**
+
 - React Server Components for sections (no client-side state needed yet)
 - Tailwind utility classes for styling (no CSS modules)
 - Custom design tokens (background, primary, secondary, accent colors)
@@ -147,6 +159,7 @@ Build the core value proposition sections of the landing page using React Server
 ### Project Structure Notes
 
 - **Files to create:**
+
   - components/ui/Button.tsx
   - components/ui/Card.tsx
   - components/sections/HeroSection.tsx
@@ -156,10 +169,12 @@ Build the core value proposition sections of the landing page using React Server
   - components/sections/HowItWorksSection.tsx
 
 - **Files to modify:**
+
   - lib/constants.ts (add all section content)
   - app/page.tsx (import and render sections)
 
 - **Expected test locations:**
+
   - Manual responsive testing via browser DevTools
   - Visual regression testing (optional)
 

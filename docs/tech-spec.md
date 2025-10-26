@@ -66,7 +66,7 @@ juliet-landing/
   - Borderless design - no hard borders, use subtle shadows and color separation
   - Generous white space for breathing room
   - Subtle shadows for depth (not borders)
-  - Clean typography hierarchy with premium fonts
+  - Clean typography hierarchy with Poppins font (weights: 400, 600, 700)
   - Smooth animations and transitions (using Motion via `motion/react` import)
   - Animations powered by tw-animate-css (Tailwind v4 compatible)
 
@@ -241,9 +241,11 @@ npx create-next-app@latest juliet-landing --typescript --tailwind --app --eslint
 cd juliet-landing
 
 # Initialize Shadcn UI
+# Option 1: Using Shadcn MCP (if available)
+#   Say: "Initialize shadcn in my project"
+#   Say: "Add accordion, card, and button components to my project"
+# Option 2: Traditional CLI
 npx shadcn@latest init
-
-# Install Shadcn components (as needed during development)
 npx shadcn@latest add accordion
 npx shadcn@latest add card
 npx shadcn@latest add button
@@ -259,6 +261,16 @@ npm install -D wrangler@latest
 
 # Note: Import Motion animations using:
 # import { motion } from "motion/react" (not "framer-motion")
+
+# Font Setup: Import Poppins in app/layout.tsx
+# Add this to app/layout.tsx:
+# import { Poppins } from "next/font/google"
+# const poppins = Poppins({
+#   subsets: ["latin"],
+#   weight: ["400", "600", "700"],
+#   variable: "--font-poppins"
+# })
+# Then add className={poppins.variable} to <html> element
 
 # Configure TypeScript strict mode
 # Edit tsconfig.json: "strict": true
@@ -289,7 +301,7 @@ const config: Config = {
         accent: "#ffe362",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
       },
       boxShadow: {
         soft: "0 2px 8px rgba(0, 0, 0, 0.08)",

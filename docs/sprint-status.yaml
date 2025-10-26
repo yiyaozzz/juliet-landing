@@ -1,0 +1,53 @@
+# generated: 2025-10-26
+# project: juliet-landing
+# project_key: juliet-landing
+# tracking_system: file-system
+# story_location: {project-root}/docs/stories
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic exists in epic file but not contexted
+#   - contexted: Epic tech context created (required before drafting stories)
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved and story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Under SM review (via review-story workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been done
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epics should be 'contexted' before stories can be 'drafted'
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically drafts next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', SM reviews, then Dev moves to 'done'
+
+generated: 2025-10-26
+project: juliet-landing
+project_key: juliet-landing
+tracking_system: file-system
+story_location: {project-root}/docs/stories
+
+development_status:
+  # Epic: Professional Landing Page (8 points)
+  # Context: See tech-spec.md for complete technical specification
+  epic-landing-page: contexted
+
+  # Story 1: Project Setup & Structure (2 points)
+  story-landing-page-1: ready-for-dev
+
+  # Story 2: Core Sections Implementation (3 points)
+  story-landing-page-2: drafted
+
+  # Story 3: Pricing, FAQ, CTA, Footer & Deployment (3 points)
+  story-landing-page-3: drafted
+
+  # Epic Retrospective
+  epic-landing-page-retrospective: optional
