@@ -59,9 +59,13 @@ so that **I can efficiently build the landing page components with type safety a
 
 ### Cloudflare Deployment Setup (AC: #4)
 
-- [ ] Research the up to date Next js 16 cloudflare deployment doc by using cloudflare mcp
-- [ ] Make deployment plan with correct official docs
-- [ ] Configure deployment
+- [ ] Use the Cloudflare Docs MCP to review **Workers · Framework guides · Web applications · Next.js** (https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs) and capture the latest adapter workflow.
+- [ ] Install deployment tooling from `/app`: `npm install @opennextjs/cloudflare@latest` and `npm install -D wrangler@latest`.
+- [ ] Create `/app/open-next.config.ts` with `export default defineCloudflareConfig()` per the official guide.
+- [ ] Add `/app/wrangler.jsonc` pointing `main` to `.open-next/worker.js`, enabling `"compatibility_flags": ["nodejs_compat"]`, and declaring `routes` for the Cloudflare-managed domain(s) (`firstdatelabs.com` and `www.firstdatelabs.com`) with `"custom_domain": true`.
+- [ ] Update `package.json` scripts to include `preview`, `deploy`, and `cf-typegen` exactly as shown in the Cloudflare guide (`opennextjs-cloudflare build && opennextjs-cloudflare preview/deploy`, `wrangler types ...`).
+- [ ] Document the `npm run preview` vs `npm run dev` distinction (Next.js dev server vs Workers runtime) and run `npm run preview` locally to confirm the Worker build works before `npm run deploy`.
+- [ ] Describe the custom-domain flow from the docs (Workers & Pages → Settings → Domains & Routes) so DNS provisioning steps are explicit for the purchased Cloudflare domain.
 
 ### Base Application Structure (AC: #6, #7)
 

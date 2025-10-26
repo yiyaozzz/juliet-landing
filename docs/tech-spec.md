@@ -351,74 +351,119 @@ body {
 
 ### Cloudflare Configuration
 
-**1. Create wrangler.jsonc:**
+> Primary references:
+>
+> - [Workers · Framework guides · Web applications · Next.js](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs)
+> - [Workers · Configuration · Routes and domains · Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains)
 
-```jsonc
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
-  "name": "juliet-landing",
-  "compatibility_date": "2024-12-30",
-  "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
-  }
-}
-```
+1. **Install the Cloudflare adapter and Wrangler CLI** (run from `/app` so dependencies live next to `package.json`):
 
-**2. Update package.json scripts:**
+   ```bash
+   npm install @opennextjs/cloudflare@latest
+   npm install -D wrangler@latest
+   ```
 
-```json
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "start": "next start",
-    "lint": "next lint"
-  }
-}
-```
+   These packages are required by the official Next.js on Workers guide to build (`opennextjs-cloudflare`) and deploy (`wrangler`) the project.
 
-**3. Configure Next.js for Cloudflare Images (optional but recommended):**
+2. **Add `open-next.config.ts` at the project root (`/app/open-next.config.ts`)** so the adapter knows how to compile for Workers:
 
-Create `lib/cloudflare-image-loader.ts`:
+   ```typescript
+   import { defineCloudflareConfig } from "@opennextjs/cloudflare";
 
-```typescript
-export default function cloudflareLoader({
-  src,
-  width,
-  quality,
-}: {
-  src: string;
-  width: number;
-  quality?: number;
-}) {
-  const params = [`width=${width}`];
-  if (quality) {
-    params.push(`quality=${quality}`);
-  }
-  const paramsString = params.join(",");
-  return `/cdn-cgi/image/${paramsString}/${src}`;
-}
-```
+   export default defineCloudflareConfig();
+   ```
 
-Update `next.config.ts`:
+   The config can later be extended with caching directives as documented in the OpenNext/Cloudflare guide.
 
-```typescript
-import type { NextConfig } from "next";
+3. **Create `wrangler.jsonc`** (recommended over `wrangler.toml` per the Workers docs). Keep the compatibility date at or beyond `2024-09-23` so `nodejs_compat` is honored:
 
-const nextConfig: NextConfig = {
-  images: {
-    loader: "custom",
-    loaderFile: "./lib/cloudflare-image-loader.ts",
-  },
-};
+   ```jsonc
+   {
+     "$schema": "node_modules/wrangler/config-schema.json",
+     "name": "juliet-landing",
+     "main": ".open-next/worker.js",
+     "compatibility_date": "2025-10-26",
+     "compatibility_flags": ["nodejs_compat"],
+     "assets": {
+       "directory": ".open-next/assets",
+       "binding": "ASSETS"
+     },
+     "routes": [
+       {
+         "pattern": "firstdatelabs.com",
+         "custom_domain": true
+       },
+       {
+         "pattern": "www.firstdatelabs.com",
+         "custom_domain": true
+       }
+     ]
+   }
+   ```
 
-export default nextConfig;
-```
+   Replace the `pattern` values with the exact apex and subdomain(s) purchased on Cloudflare (for this project that’s `firstdatelabs.com` and `www.firstdatelabs.com`). Declaring `custom_domain: true` ensures Workers provisions DNS + TLS automatically once `npx wrangler deploy` is run on the account.
+
+4. **Update `package.json` scripts** to match the adapter’s workflow documented by Cloudflare:
+
+   ```json
+   {
+     "scripts": {
+       "dev": "next dev",
+       "build": "next build",
+       "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+       "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+       "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+       "start": "next start",
+       "lint": "next lint"
+     }
+   }
+   ```
+
+   - `preview` runs the compiled Worker locally via `wrangler dev`, which is how the official guide recommends validating the Workers runtime.
+   - `cf-typegen` (optional but encouraged) mirrors the docs by emitting `cloudflare-env.d.ts` so server components get typed bindings.
+
+5. **Configure Next.js for Cloudflare Images (optional but recommended)** following the official _Cloudflare Images → Integrate with frameworks → Next.js_ guidance:
+
+   ```typescript
+   // /app/lib/cloudflare-image-loader.ts
+   const normalizeSrc = (src: string) =>
+     src.startsWith("/") ? src.slice(1) : src;
+
+   export default function cloudflareLoader({
+     src,
+     width,
+     quality,
+   }: {
+     src: string;
+     width: number;
+     quality?: number;
+   }) {
+     if (process.env.NODE_ENV === "development") {
+       return src;
+     }
+     const params = [`width=${width}`];
+     if (quality) {
+       params.push(`quality=${quality}`);
+     }
+     const paramsString = params.join(",");
+     return `/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
+   }
+   ```
+
+   Update `next.config.ts` accordingly:
+
+   ```typescript
+   import type { NextConfig } from "next";
+
+   const nextConfig: NextConfig = {
+     images: {
+       loader: "custom",
+       loaderFile: "./lib/cloudflare-image-loader.ts",
+     },
+   };
+
+   export default nextConfig;
+   ```
 
 ### Environment Configuration
 
@@ -575,7 +620,7 @@ npx wrangler whoami
 2. **Add Custom Domain:**
 
    - Click "Add" → "Custom Domain"
-   - Enter your domain (e.g., `juliet.app` or `www.juliet.app`)
+   - Enter `firstdatelabs.com` and (optionally) `www.firstdatelabs.com`
    - Cloudflare automatically configures DNS + TLS
 
 3. **DNS Configuration (if apex domain):**
