@@ -12,8 +12,8 @@ WORKFLOW_PATH: greenfield-level-1.yaml
 ## Current State
 
 CURRENT_PHASE: Phase 4 - Implementation
-CURRENT_WORKFLOW: sprint-planning
-CURRENT_AGENT: sm
+CURRENT_WORKFLOW: develop story-landing-page-1
+CURRENT_AGENT: dev
 PHASE_1_COMPLETE: false
 PHASE_2_COMPLETE: true
 PHASE_3_COMPLETE: true
@@ -21,9 +21,9 @@ PHASE_4_COMPLETE: false
 
 ## Next Action
 
-NEXT_ACTION: Create sprint plan with all stories from epic (Required)
-NEXT_COMMAND: sprint-planning
-NEXT_AGENT: sm
+NEXT_ACTION: Continue Story 1 implementation via develop workflow
+NEXT_COMMAND: develop
+NEXT_AGENT: dev
 
 ---
 
