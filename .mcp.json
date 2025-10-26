@@ -120,7 +120,11 @@
 	"cloudflare-bindings": {
 		"command": "npx",
 		"args": ["mcp-remote", "https://bindings.mcp.cloudflare.com/mcp"]
-	}    
+	},
+  "next-devtools": {
+    "command": "npx",
+    "args": ["-y", "next-devtools-mcp@latest"]
+  }    
   },
   "autoApprove": [
     "context7",

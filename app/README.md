@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Juliet Landing
 
-## Getting Started
+A premium, borderless landing page for Juliet (First Date Labs) built with Next.js 16, Tailwind CSS 4, and Cloudflare Workers via the OpenNext adapter.
 
-First, run the development server:
+## Local Development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Starts the Next.js dev server with fast refresh on `http://localhost:3000`. Use this while building UI and iterating on components. |
+| `npm run preview` | Builds the Worker bundle via `opennextjs-cloudflare build` and serves it through Wrangler so you can validate the Cloudflare runtime before deploying. |
+| `npm run deploy` | Produces the Worker bundle and publishes it to your Cloudflare account using the routes defined in `wrangler.jsonc`. |
+| `npm run cf-typegen` | Generates `cloudflare-env.d.ts` bindings, keeping server components in sync with Cloudflare environment variables. |
+| `npm run lint` | Runs `next lint` with ESLint 9.17 rules. |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> ⚠️ Run `npm run preview` at least once before `npm run deploy`. The preview flow uses the same OpenNext compilation pipeline and catches adapter/runtime mismatches that `npm run dev` cannot surface.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design Tokens & Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Tailwind tokens live in `tailwind.config.ts`, mapping project colors (`#fffdf6`, `#f9d544`, `#cab5d4`, `#ffe362`), Poppins font family, and premium shadows.
+- Global CSS (`src/app/globals.css`) sets CSS variables, borderless defaults, and custom utilities (`.shadow-soft`, `.shadow-hover`, `.no-border`).
+- Static copy plus placeholder data for future sections sit in `src/lib/constants.ts` so Story 2+ can hydrate real sections without touching layout glue code.
+- Base layout (`src/app/layout.tsx`) wires the Poppins variable font, metadata, and SEO defaults. The landing skeleton in `src/app/page.tsx` references the constants to render hero, proof, pricing, and FAQ placeholders.
 
-## Learn More
+## Cloudflare Deployment
 
-To learn more about Next.js, take a look at the following resources:
+1. Install the Cloudflare adapter + Wrangler (already in `package.json`).
+2. Configure project-level settings:
+   - `open-next.config.ts` exports `defineCloudflareConfig` with the default R2 incremental cache override.
+   - `next.config.ts` sets a custom image loader (`./src/lib/cloudflare-image-loader.ts`) so Cloudflare Images power optimized assets in production.
+   - `wrangler.jsonc` points `main` to `.open-next/worker.js`, enables `nodejs_compat`, and declares the managed domains:
+     - `firstdatelabs.com`
+     - `www.firstdatelabs.com`
+3. Preview locally with `npm run preview` (wraps `opennextjs-cloudflare build && opennextjs-cloudflare preview`). Wrangler spins up the Worker using your account credentials, matching production behavior.
+4. Deploy with `npm run deploy` once preview output looks correct.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Custom Domain Flow (per Cloudflare docs)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Open the Cloudflare Dashboard → **Workers & Pages** → select your Worker → **Settings** → **Domains & Routes**.
+2. Click **Add > Custom Domain** and enter `firstdatelabs.com`, then repeat for `www.firstdatelabs.com` if you want a www alias.
+3. Cloudflare provisions the DNS + TLS certificates automatically. Because the domains already live in Cloudflare, no manual DNS edits are needed beyond approving the generated routes.
+4. After propagation, confirm both domains resolve to the Worker. Future `npm run deploy` runs continue using the same routes.
 
-## Deploy on Vercel
+## Additional Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Use `npm run cf-typegen` whenever you add KV namespaces, R2 buckets, or environment bindings so server-side TypeScript stays accurate.
+- The repo keeps placeholder directories (`public/images`, `public/icons`, `src/components/sections`) tracked for the follow-up stories that add real assets and JSX sections.
