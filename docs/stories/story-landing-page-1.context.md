@@ -20,6 +20,7 @@
 - Install animation library: tw-animate-css (Tailwind v4 compatible)
 - Install Prettier: prettier@3.4.2, prettier-plugin-tailwindcss
 - Install Shadcn UI components (Option A: MCP or Option B: CLI)
+- Add aceternity UI registry to components.json
 - Configure TypeScript strict mode in tsconfig.json
 - Create .prettierrc with semi, trailingComma, singleQuote, tabWidth settings
 

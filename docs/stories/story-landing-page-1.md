@@ -31,6 +31,7 @@ so that **I can efficiently build the landing page components with type safety a
 - [ ] Install Shadcn UI components (choose method):
   - Option A (MCP): Say "Initialize shadcn in my project" then "Add button, card, accordion components"
   - Option B (CLI): Run `npx shadcn@latest init` and `npx shadcn@latest add button card accordion`
+- [ ] Add aceternity UI registry to components.json after initialization
 - [ ] Configure TypeScript strict mode in tsconfig.json
 - [ ] Create .prettierrc with semi, trailingComma, singleQuote, tabWidth settings
 
