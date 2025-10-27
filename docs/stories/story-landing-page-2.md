@@ -10,7 +10,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 
 ## Acceptance Criteria
 
-1. **AC1:** HeroSection.tsx displays full viewport height hero with headline, subheadline, CTA button, and gradient background
+1. **AC1:** HeroSection.tsx displays full viewport height hero with headline, subheadline, CTA button
 2. **AC2:** Hero section is fully responsive (mobile < 768px, tablet 768-1024px, desktop > 1024px)
 3. **AC3:** SocialProofSection.tsx displays a series of 5 testimonial cards with customer quotes, names, roles, and avatars in a row. This row should slowly animate left and it's infinite marquees.
 4. **AC4:** Testimonials use horizontal scroll on mobile and grid layout on desktop
@@ -25,8 +25,21 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 13. **AC13:** All animations smooth and performant (no jank, using Framer Motion via motion/react)
 14. **AC14:** Content from lib/constants.ts renders correctly in all sections
 15. **AC15:** All 5 sections responsive at mobile (375px, 414px), tablet (768px, 1024px), desktop (1280px, 1920px)
+16. **AC16:** Navigation bar displays logo (left), inline links ("Home · Press · Login") centered, and primary CTA button ("Get Early Access") aligned right
+17. **AC17:** Navigation bar remains sticky at the top and applies a subtle drop shadow once the page scrolls
 
 ## Tasks / Subtasks
+
+### Navbar (AC: #16, #17)
+
+- [ ] Create components/layout/Navbar.tsx
+- [ ] Layout structure: logo (left), nav links ("Home · Press · Login") centered, CTA button ("Get Early Access") on right
+- [ ] Reuse Button component for CTA button (primary variant)
+- [ ] Implement sticky positioning with backdrop/blur treatment
+- [ ] Detect scroll to toggle drop shadow (Intersection Observer or scroll listener)
+- [ ] Ensure responsive behavior on mobile/tablet (stack or collapse as needed)
+- [ ] Verify keyboard navigation and focus styles
+- [ ] Import and render Navbar above Hero section in app/page.tsx
 
 ### Reusable UI Components (AC: #10, #11)
 
@@ -59,7 +72,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 
 - [ ] Create components/sections/SocialProofSection.tsx
 - [ ] Implement testimonial card layout with quote, name, role
-- [ ] Add optional avatar support to testimonial cards
+- [ ] Add avatar support to testimonial cards
 - [ ] Implement horizontal scroll for mobile (overflow-x-auto)
 - [ ] Implement grid layout for desktop (3 columns)
 - [ ] Add testimonial data to lib/constants.ts
@@ -98,11 +111,13 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 ### Content Integration (AC: #14)
 
 - [ ] Update lib/constants.ts with all section content:
+  - Navigation: logo asset reference, nav links array, CTA text
   - Hero: headline, subheadline, CTA text
   - Testimonials: 2-3 testimonial objects
   - Problem/Solution: old way points, new way points
   - Benefits: 4 benefit objects with icons
   - How It Works: 4 step objects
+- [ ] Source copy for each section from docs/content-reference.md
 - [ ] Create TypeScript interfaces for each data structure
 - [ ] Verify all constants export correctly
 
@@ -126,9 +141,10 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 
 ### Integration & Verification (AC: #2, #12, #13, #14, #15)
 
-- [ ] Import all 5 sections into app/page.tsx
+- [ ] Import navbar and all sections into app/page.tsx
 - [ ] Verify sections render in correct order
 - [ ] Test smooth scroll between sections
+- [ ] Verify navbar stickiness and shadow behavior on scroll
 - [ ] Verify no console errors or warnings
 - [ ] Test responsive behavior across all breakpoints
 - [ ] Verify animations smooth and performant
@@ -137,7 +153,7 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 
 ### Technical Summary
 
-Build the core value proposition sections of the landing page using React Server Components and Tailwind CSS. Create two reusable UI components (Button, Card) that will be used throughout the page with the **premium minimalist, borderless aesthetic**. Implement 5 key sections that communicate Juliet's value: Hero (first impression + CTA), Social Proof (testimonials), Problem/Solution (comparison), Benefits (key value props), and How It Works (process explanation). All sections must be fully responsive with mobile-first design, smooth animations using Framer Motion (imported as `motion/react`), and content driven from TypeScript constants for easy maintainability.
+Build the persistent navigation and core value proposition sections of the landing page using React Server Components and Tailwind CSS. Create two reusable UI components (Button, Card) that will be used throughout the page with the **premium minimalist, aesthetic**. Implement the sticky Navbar (logo, links, CTA) plus 5 key sections that communicate Juliet's value: Hero (first impression + CTA), Social Proof (testimonials), Problem/Solution (comparison), Benefits (key value props), and How It Works (process explanation). All sections must be fully responsive with mobile-first design, smooth animations using Framer Motion (imported as `motion/react`), and content driven from TypeScript constants for easy maintainability.
 
 **Design System Application:**
 
@@ -160,6 +176,7 @@ Build the core value proposition sections of the landing page using React Server
 
 - **Files to create:**
 
+  - components/layout/Navbar.tsx
   - components/ui/Button.tsx
   - components/ui/Card.tsx
   - components/sections/HeroSection.tsx
@@ -185,6 +202,7 @@ Build the core value proposition sections of the landing page using React Server
 - **Tech Spec:** See tech-spec.md → Technical Details (sections 1-5), Technical Approach (Design System)
 - **Architecture:** tech-spec.md → Implementation Stack (UI Components section)
 - **Design Specifications:** tech-spec.md → Technical Details for each section's requirements
+- **Content:** docs/content-reference.md
 
 ## Dev Agent Record
 
