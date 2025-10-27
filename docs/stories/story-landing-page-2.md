@@ -1,6 +1,6 @@
 # Story: Core Sections Implementation
 
-Status: Draft
+Status: ready-for-dev
 
 ## Story
 
@@ -208,7 +208,7 @@ Build the persistent navigation and core value proposition sections of the landi
 
 ### Context Reference
 
-<!-- Path(s) to story context XML will be added here by context workflow -->
+- docs/stories/story-landing-page-2.context.md
 
 ### Agent Model Used
 
