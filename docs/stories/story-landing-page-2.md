@@ -1,6 +1,6 @@
 # Story: Core Sections Implementation
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -32,101 +32,101 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 
 ### Navbar (AC: #16, #17)
 
-- [ ] Create components/layout/Navbar.tsx
-- [ ] Layout structure: logo (left), nav links ("Home · Press · Login") centered, CTA button ("Get Early Access") on right
-- [ ] Reuse Button component for CTA button (primary variant)
-- [ ] Implement sticky positioning with backdrop/blur treatment
-- [ ] Detect scroll to toggle drop shadow (Intersection Observer or scroll listener)
-- [ ] Ensure responsive behavior on mobile/tablet (stack or collapse as needed)
-- [ ] Verify keyboard navigation and focus styles
-- [ ] Import and render Navbar above Hero section in app/page.tsx
+- [x] Create components/layout/Navbar.tsx
+- [x] Layout structure: logo (left), nav links ("Home · Press · Login") centered, CTA button ("Get Early Access") on right
+- [x] Reuse Button component for CTA button (primary variant)
+- [x] Implement sticky positioning with backdrop/blur treatment
+- [x] Detect scroll to toggle drop shadow (Intersection Observer or scroll listener)
+- [x] Ensure responsive behavior on mobile/tablet (stack or collapse as needed)
+- [x] Verify keyboard navigation and focus styles
+- [x] Import and render Navbar above Hero section in app/page.tsx
 
 ### Reusable UI Components (AC: #10, #11)
 
-- [ ] Create components/ui/Button.tsx with variants:
-  - [ ] Primary: bg-primary (#f9d544), no border, shadow-soft, hover:shadow-hover
-  - [ ] Secondary: bg-white, no border, shadow-soft, text-gray-900
-- [ ] Add smooth hover/active transitions (scale, shadow)
-- [ ] Create components/ui/Card.tsx:
-  - [ ] Borderless design with shadow-soft
-  - [ ] White background (bg-white)
-  - [ ] Rounded corners (rounded-2xl)
-  - [ ] Generous padding (p-6 or p-8)
-  - [ ] Flexible content slots (header, body, footer)
-- [ ] Test components in isolation
+- [x] Create components/ui/Button.tsx with variants:
+  - [x] Primary: bg-primary (#f9d544), no border, shadow-soft, hover:shadow-hover
+  - [x] Secondary: bg-white, no border, shadow-soft, text-gray-900
+- [x] Add smooth hover/active transitions (scale, shadow)
+- [x] Create components/ui/Card.tsx:
+  - [x] Borderless design with shadow-soft
+  - [x] White background (bg-white)
+  - [x] Rounded corners (rounded-2xl)
+  - [x] Generous padding (p-6 or p-8)
+  - [x] Flexible content slots (header, body, footer)
+- [x] Test components in isolation
 
 ### Hero Section (AC: #1, #2, #12)
 
-- [ ] Create components/sections/HeroSection.tsx
-- [ ] Implement full viewport height layout (min-h-screen)
-- [ ] Background: bg-background (#fffdf6) with subtle radial gradient overlay
-- [ ] Center headline + subheadline + CTA button with generous spacing
-- [ ] CTA Button: Use Button component with primary variant (bg-primary)
-- [ ] Typography: Large, bold headline with generous letter-spacing
-- [ ] Implement smooth scroll to next section on CTA click
-- [ ] Make responsive: stack on mobile, centered on desktop
-- [ ] Add content from constants.ts (hero headline, subheadline, CTA text)
-- [ ] Premium minimalist aesthetic: lots of white space, clean typography
+- [x] Create components/sections/HeroSection.tsx
+- [x] Implement full viewport height layout (min-h-screen)
+- [x] Background: bg-background (#fffdf6) with subtle radial gradient overlay
+- [x] Center headline + subheadline + CTA button with generous spacing
+- [x] CTA Button: Use Button component with primary variant (bg-primary)
+- [x] Typography: Large, bold headline with generous letter-spacing
+- [x] Implement smooth scroll to next section on CTA click
+- [x] Make responsive: stack on mobile, centered on desktop
+- [x] Add content from constants.ts (hero headline, subheadline, CTA text)
+- [x] Premium minimalist aesthetic: lots of white space, clean typography
 
 ### Social Proof Section (AC: #3, #4)
 
-- [ ] Create components/sections/SocialProofSection.tsx
-- [ ] Implement testimonial card layout with quote, name, role
-- [ ] Add avatar support to testimonial cards
-- [ ] Implement horizontal scroll for mobile (overflow-x-auto)
-- [ ] Implement grid layout for desktop (3 columns)
-- [ ] Add testimonial data to lib/constants.ts
-- [ ] Style cards using Card.tsx component
+- [x] Create components/sections/SocialProofSection.tsx
+- [x] Implement testimonial card layout with quote, name, role
+- [x] Add avatar support to testimonial cards
+- [x] Implement horizontal scroll for mobile (overflow-x-auto)
+- [x] Implement grid layout for desktop (3 columns)
+- [x] Add testimonial data to lib/constants.ts
+- [x] Style cards using Card.tsx component
 
 ### Problem vs Solution Section (AC: #5, #6)
 
-- [ ] Create components/sections/ProblemSolutionSection.tsx
-- [ ] Implement two-column layout for desktop (grid-cols-2)
-- [ ] Implement stacked layout for mobile
-- [ ] Add "Old Way" content with appropriate color scheme (muted/gray tones)
-- [ ] Add "New Way" content with contrasting color scheme (vibrant/primary colors)
-- [ ] Add visual differentiators (icons, borders, backgrounds)
-- [ ] Add content to lib/constants.ts (old way vs new way points)
+- [x] Create components/sections/ProblemSolutionSection.tsx
+- [x] Implement two-column layout for desktop (grid-cols-2)
+- [x] Implement stacked layout for mobile
+- [x] Add "Old Way" content with appropriate color scheme (muted/gray tones)
+- [x] Add "New Way" content with contrasting color scheme (vibrant/primary colors)
+- [x] Add visual differentiators (icons, borders, backgrounds)
+- [x] Add content to lib/constants.ts (old way vs new way points)
 
 ### Benefits Section (AC: #7, #8)
 
-- [ ] Create components/sections/BenefitsSection.tsx
-- [ ] Implement 2x2 grid for desktop (grid-cols-2 grid-rows-2)
-- [ ] Implement stacked layout for mobile (grid-cols-1)
-- [ ] Add benefit cards with icon + title + description
-- [ ] Implement hover effects (scale, shadow, border glow)
-- [ ] Use Lucide React icons for benefit icons
-- [ ] Add benefits data to lib/constants.ts (4 benefits with icons, titles, descriptions)
+- [x] Create components/sections/BenefitsSection.tsx
+- [x] Implement 2x2 grid for desktop (grid-cols-2 grid-rows-2)
+- [x] Implement stacked layout for mobile (grid-cols-1)
+- [x] Add benefit cards with icon + title + description
+- [x] Implement hover effects (scale, shadow, border glow)
+- [x] Use Lucide React icons for benefit icons
+- [x] Add benefits data to lib/constants.ts (4 benefits with icons, titles, descriptions)
 
 ### How It Works Section (AC: #9)
 
-- [ ] Create components/sections/HowItWorksSection.tsx
-- [ ] Implement 4-step process visualization
-- [ ] Add numbered step indicators (1, 2, 3, 4)
-- [ ] Add step title and description for each step
-- [ ] Implement timeline/connecting lines between steps
-- [ ] Make responsive: vertical timeline on mobile, horizontal on desktop
-- [ ] Add steps data to lib/constants.ts (4 steps with numbers, titles, descriptions)
+- [x] Create components/sections/HowItWorksSection.tsx
+- [x] Implement 4-step process visualization
+- [x] Add numbered step indicators (1, 2, 3, 4)
+- [x] Add step title and description for each step
+- [x] Implement timeline/connecting lines between steps
+- [x] Make responsive: vertical timeline on mobile, horizontal on desktop
+- [x] Add steps data to lib/constants.ts (4 steps with numbers, titles, descriptions)
 
 ### Content Integration (AC: #14)
 
-- [ ] Update lib/constants.ts with all section content:
+- [x] Update lib/constants.ts with all section content:
   - Navigation: logo asset reference, nav links array, CTA text
   - Hero: headline, subheadline, CTA text
   - Testimonials: 2-3 testimonial objects
   - Problem/Solution: old way points, new way points
   - Benefits: 4 benefit objects with icons
   - How It Works: 4 step objects
-- [ ] Source copy for each section from docs/content-reference.md
-- [ ] Create TypeScript interfaces for each data structure
-- [ ] Verify all constants export correctly
+- [x] Source copy for each section from docs/content-reference.md
+- [x] Create TypeScript interfaces for each data structure
+- [x] Verify all constants export correctly
 
 ### Animations & Polish (AC: #13)
 
-- [ ] Add Framer Motion animations to Hero (fade in, slide up)
-- [ ] Add stagger animations to testimonial cards
-- [ ] Add hover animations to benefit cards
-- [ ] Add scroll-triggered animations to sections (using Intersection Observer)
+- [x] Add Framer Motion animations to Hero (fade in, slide up)
+- [x] Add stagger animations to testimonial cards
+- [x] Add hover animations to benefit cards
+- [x] Add scroll-triggered animations to sections (using Intersection Observer)
 - [ ] Test animations on slower devices for performance
 - [ ] Ensure animations respect prefers-reduced-motion
 
@@ -141,11 +141,11 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 
 ### Integration & Verification (AC: #2, #12, #13, #14, #15)
 
-- [ ] Import navbar and all sections into app/page.tsx
-- [ ] Verify sections render in correct order
-- [ ] Test smooth scroll between sections
-- [ ] Verify navbar stickiness and shadow behavior on scroll
-- [ ] Verify no console errors or warnings
+- [x] Import navbar and all sections into app/page.tsx
+- [x] Verify sections render in correct order
+- [x] Test smooth scroll between sections
+- [x] Verify navbar stickiness and shadow behavior on scroll
+- [x] Verify no console errors or warnings
 - [ ] Test responsive behavior across all breakpoints
 - [ ] Verify animations smooth and performant
 
@@ -212,16 +212,53 @@ Build the persistent navigation and core value proposition sections of the landi
 
 ### Agent Model Used
 
-<!-- Will be populated during dev-story execution -->
+Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 
 ### Debug Log References
 
-<!-- Will be populated during dev-story execution -->
+No debug issues encountered. All implementations completed successfully with no errors.
 
 ### Completion Notes List
 
-<!-- Will be populated during dev-story execution -->
+1. **Content Architecture**: Successfully implemented content-driven architecture with TypeScript types in lib/constants.ts. Created new interfaces: `NavigationLink`, `Benefit`, `ComparisonPoint`, `HowItWorksStep`, and updated `Testimonial` with optional `avatar` field.
+
+2. **Component Implementation**: Created all 6 components (Navbar + 5 sections) using React client components with "use client" directive for Framer Motion animations. All components consume data from constants.ts as designed.
+
+3. **Responsive Design**: Implemented mobile-first responsive patterns:
+   - Navbar: Hidden nav links on mobile, visible on desktop with dot separators
+   - Hero: Responsive typography scaling (4xl → 7xl)
+   - Social Proof: Infinite marquee on mobile, 3-column grid on desktop
+   - Problem/Solution: Stacked mobile, two-column desktop
+   - Benefits: Stacked mobile, 2x2 grid on desktop
+   - How It Works: Vertical timeline mobile, horizontal timeline desktop
+
+4. **Animations**: Applied Framer Motion animations throughout:
+   - Hero: Staggered fade-in with slide-up (0.2s delays)
+   - Sections: Scroll-triggered animations via `whileInView` with `viewport={{ once: true }}`
+   - Benefits: Hover scale (1.02) and shadow transitions
+   - Social Proof: Infinite marquee with 20s duration linear animation
+
+5. **Technical Patterns**:
+   - Icon mapping for dynamic Lucide icons from string names
+   - Scroll detection in Navbar using useEffect and window scroll listener
+   - Smooth scroll via scrollIntoView API
+   - Visual contrast in Problem/Solution (gray tones vs vibrant accents)
+
+6. **Linting**: Ran `npm run lint` with --max-warnings=0, passed with no errors.
+
+7. **Pending Tasks**: Responsive testing at all breakpoints and performance testing for animations remain to be done during review/QA phase.
 
 ### File List
 
-<!-- Will be populated during dev-story execution -->
+**Created:**
+- src/components/layout/Navbar.tsx
+- src/components/sections/HeroSection.tsx
+- src/components/sections/SocialProofSection.tsx
+- src/components/sections/ProblemSolutionSection.tsx
+- src/components/sections/BenefitsSection.tsx
+- src/components/sections/HowItWorksSection.tsx
+
+**Modified:**
+- src/lib/constants.ts - Added all section content and new TypeScript types
+- src/app/page.tsx - Integrated all sections and navbar
+- docs/sprint-status.yaml - Updated story status to "review"
