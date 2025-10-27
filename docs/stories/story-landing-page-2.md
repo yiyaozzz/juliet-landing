@@ -139,6 +139,10 @@ so that **I can quickly understand what Juliet offers and why it's valuable to m
 - [x] Test How It Works timeline orientation change
 - [x] Fix any layout issues found during testing
 
+### Review Follow-ups
+
+- [x] [AI-Review][High] Restore navbar CTA navigation by wrapping it with Link to `navigation.cta.href` and smooth-scroll handler.
+
 ### Integration & Verification (AC: #2, #12, #13, #14, #15)
 
 - [x] Import navbar and all sections into app/page.tsx
@@ -232,27 +236,43 @@ Build the persistent navigation and core value proposition sections of the landi
 - Implementation (Benefits): assembled 2x2 responsive card grid with Lucide icons, hover lift, and copy from `benefits` constants in `components/sections/BenefitsSection.tsx`.
 - Implementation (How It Works): delivered four-step timeline with gradient connector, responsive stacking, and constants-driven content in `components/sections/HowItWorksSection.tsx`.
 - Implementation (Navigation data): centralized nav links/CTA in `lib/constants.ts` and wired `Navbar` to consume them.
-- Validation: `npm run lint` (passes); `npm run build` (passes, Next.js workspace-root warning observed).
+- Fix (Navbar CTA): wrapped the header CTA in a Link using `navigation.cta.href` and shared `smoothScrollToHash` helper to restore waitlist navigation (AC10/AC12/AC16).
+- Validation: `npm run lint` (passes); `npm run build` (passes, build command timed out after emitting success output).
 - Fix (Build polish): coerced `useReducedMotion` output to boolean in SocialProofSection and set `outputFileTracingRoot` in `next.config.ts` to silence workspace-root warning.
 
 ### Completion Notes List
 
 - Created premium landing layout covering hero, social proof, problem/solution, benefits, and how-it-works sections with Framer Motion polish and responsive Tailwind design.
 - Refined shared Button/Card components to align with design system and consumed structured content from `lib/constants.ts` across sections.
-- Verified lint/build workflows; recommend manually sanity-checking marquee motion on low-powered devices despite reduced-motion safeguards.
+- Restored navbar CTA smooth scrolling via shared utility and revalidated build/lint pipelines.
+
+### Senior Developer Review (AI) – {{date}}
+
+**Outcome:** Changes Requested
+
+**Summary:** Implementation largely meets design and responsiveness goals, but the primary navbar CTA no longer triggers navigation, blocking multiple acceptance criteria.
+
+**Findings:**
+
+1. [High][AC10, AC12, AC16] Navbar CTA (`Get Early Access`) renders as a `<button>` without link or scroll behavior (`components/layout/Navbar.tsx:60-63`). Users cannot reach the waitlist section, regressing the primary flow and smooth-scroll requirement. ⟶ Action item R1
+
+**Action Items:**
+
+- [High][R1][Bug][Owner: TBD] Wrap the navbar CTA in `Link` using `navigation.cta.href` and reuse the smooth-scroll handler so the button navigates to the waitlist section (e.g., `<Button asChild><Link href={navigation.cta.href}>…</Link></Button>`).
 
 ### File List
 
 - app/src/app/globals.css (updated)
 - app/src/app/page.tsx (updated)
-- app/src/components/layout/Navbar.tsx (new)
-- app/src/components/sections/HeroSection.tsx (new)
+- app/src/components/layout/Navbar.tsx (updated)
+- app/src/components/sections/HeroSection.tsx (updated)
 - app/src/components/sections/SocialProofSection.tsx (new)
 - app/src/components/sections/ProblemSolutionSection.tsx (new)
 - app/src/components/sections/BenefitsSection.tsx (new)
 - app/src/components/sections/HowItWorksSection.tsx (new)
 - app/src/components/ui/button.tsx (updated)
 - app/src/components/ui/card.tsx (updated)
+- app/src/lib/utils.ts (updated)
 - app/src/lib/constants.ts (updated)
 - docs/sprint-status.yaml (updated)
 - docs/stories/story-landing-page-2.md (updated)

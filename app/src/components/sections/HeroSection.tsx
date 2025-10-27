@@ -1,28 +1,20 @@
 "use client"
 
 import { useCallback } from "react"
+import type { MouseEvent as ReactMouseEvent } from "react"
 import Link from "next/link"
 import { motion, useReducedMotion } from "motion/react"
 
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { cn, smoothScrollToHash } from "@/lib/utils"
 import { heroContent } from "@/lib/constants"
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
 
   const handleCtaClick = useCallback(
-    (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-      const href = (event.currentTarget.getAttribute("href") || "").replace(
-        /^#/, ""
-      )
-      if (!href) return
-
-      const target = document.getElementById(href)
-      if (target) {
-        event.preventDefault()
-        target.scrollIntoView({ behavior: "smooth", block: "start" })
-      }
+    (event: ReactMouseEvent<HTMLAnchorElement>) => {
+      smoothScrollToHash(event)
     },
     []
   )

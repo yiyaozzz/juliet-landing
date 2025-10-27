@@ -1,14 +1,21 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+import type { MouseEvent as ReactMouseEvent } from "react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { navigation } from "@/lib/constants"
-import { cn } from "@/lib/utils"
+import { cn, smoothScrollToHash } from "@/lib/utils"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const handleCtaClick = useCallback(
+    (event: ReactMouseEvent<HTMLAnchorElement>) => {
+      smoothScrollToHash(event)
+    },
+    []
+  )
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,8 +64,14 @@ export function Navbar() {
         </div>
 
         <div className="flex justify-start md:justify-end">
-          <Button className="min-w-[160px]" aria-label={navigation.cta.label}>
-            {navigation.cta.label}
+          <Button
+            asChild
+            className="min-w-[160px]"
+            aria-label={navigation.cta.label}
+          >
+            <Link href={navigation.cta.href} onClick={handleCtaClick}>
+              {navigation.cta.label}
+            </Link>
           </Button>
         </div>
       </nav>
