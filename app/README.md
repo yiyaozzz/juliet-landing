@@ -38,6 +38,17 @@ A premium, borderless landing page for Juliet (First Date Labs) built with Next.
 1. Open the Cloudflare Dashboard → **Workers & Pages** → select your Worker → **Settings** → **Domains & Routes**.
 2. Click **Add > Custom Domain** and enter `firstdatelabs.com`, then repeat for `www.firstdatelabs.com` if you want a www alias.
 3. Cloudflare provisions the DNS + TLS certificates automatically. Because the domains already live in Cloudflare, no manual DNS edits are needed beyond approving the generated routes.
+
+## Continuous Deployment
+
+Automated deploys run via GitHub Actions whenever `main` changes:
+
+1. Repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` authenticate the workflow.
+2. Workflow file: `.github/workflows/deploy.yml`.
+   - Checks out the repo, installs Node 20, and runs `npm ci`.
+   - Executes `npm run lint` to block broken builds.
+   - Calls `npm run deploy`, which runs `opennextjs-cloudflare build && ... deploy`.
+3. Concurrency is limited to one active deploy (`cloudflare-deploy-main`) so sequential pushes don’t overlap. Use the **Actions** tab → **Deploy to Cloudflare** workflow to monitor status or trigger manual redeploys via **Run workflow**.
 4. After propagation, confirm both domains resolve to the Worker. Future `npm run deploy` runs continue using the same routes.
 
 ## Additional Notes
