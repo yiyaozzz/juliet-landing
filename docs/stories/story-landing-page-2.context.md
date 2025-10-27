@@ -120,6 +120,7 @@
         - Verify animations smooth and performant
       </taskGroup>
     </tasks>
+
   </story>
 
   <acceptanceCriteria>
@@ -175,7 +176,8 @@
     <code>
       <artifact path="app/src/app/layout.tsx" kind="layout" symbol="RootLayout" lines="1-37" reason="Root layout already configured with Poppins font (400/600/700), metadata for SEO, and proper font-sans variable setup. Navbar and sections will be rendered as children in page.tsx." />
 
-      <artifact path="app/src/app/page.tsx" kind="page" symbol="HomePage" lines="1-7" reason="Current skeleton page - will be replaced with Navbar and all 5 section imports. Currently renders placeholder, needs full section composition." />
+tr
+<artifact path="app/src/app/page.tsx" kind="page" symbol="HomePage" lines="1-7" reason="Current skeleton page - will be replaced with Navbar and all 5 section imports. Currently renders placeholder, needs full section composition." />
 
       <artifact path="app/src/components/ui/button.tsx" kind="component" symbol="Button" lines="1-61" reason="Fully implemented shadcn Button component with variants (default/destructive/outline/secondary/ghost/link), sizes (default/sm/lg/icon), hover states, focus rings. Navbar and Hero CTAs will use primary variant. Reuse as-is." />
 
@@ -213,6 +215,7 @@
         <package name="@opennextjs/cloudflare" version="1.11.0" note="Deployment adapter" />
       </ecosystem>
     </dependencies>
+
   </artifacts>
 
   <constraints>
@@ -256,6 +259,7 @@
     <interface name="Lucide Icons" kind="library" signature="import { IconName } from 'lucide-react'" path="node_modules/lucide-react">
       Icon library for benefit section. Import icons by name (e.g., HeartIcon, SparklesIcon, TrendingUpIcon). Pass size and className props. Use text-primary for icon color.
     </interface>
+
   </interfaces>
 
   <tests>
@@ -280,5 +284,6 @@
       <test ac="15">Responsive: All 5 sections tested at all breakpoints, layout adapts correctly, no horizontal scroll, touch targets adequate on mobile.</test>
       <test ac="16,17">Navbar: Logo left, nav links centered, CTA right, sticky positioning, drop shadow appears on scroll (Intersection Observer or scroll listener).</test>
     </ideas>
+
   </tests>
 </story-context>
