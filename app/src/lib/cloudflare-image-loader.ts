@@ -13,10 +13,10 @@ export default function cloudflareLoader({
     return src;
   }
 
-  const params = new URLSearchParams({ width: width.toString() });
+  const params = [`width=${width}`];
   if (quality) {
-    params.append("quality", quality.toString());
+    params.push(`quality=${quality}`);
   }
 
-  return `/cdn-cgi/image/${params.toString()}/${normalizeSrc(src)}`;
+  return `/cdn-cgi/image/${params.join(",")}/${normalizeSrc(src)}`;
 }
