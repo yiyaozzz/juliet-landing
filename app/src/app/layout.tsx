@@ -11,16 +11,16 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Juliet Landing — Relationship Research OS",
+  title: "Juliet: Your AI Dating Coach for Real Connections",
   description:
-    "A premium, borderless landing experience for Juliet, the modern relationship research platform built for marketing and product teams.",
+    "Meet Juliet: an AI dating coach that helps you practice real first-date conversations, get instant feedback, and prepare for your next date—so you can build meaningful connections.",
   metadataBase: new URL("https://firstdatelabs.com"),
   openGraph: {
-    title: "Juliet Landing",
+    title: "Juliet: Your AI Dating Coach for Real Connections",
     description:
-      "Launch insight-backed experiences faster with Juliet’s unified research workspace.",
+      "Meet Juliet: an AI dating coach that helps you practice real first-date conversations, get instant feedback, and prepare for your next date—so you can build meaningful connections.",
     url: "https://firstdatelabs.com",
-    siteName: "Juliet",
+    siteName: "First Date Labs",
   },
 };
 
