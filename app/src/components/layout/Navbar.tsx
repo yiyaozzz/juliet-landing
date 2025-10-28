@@ -51,7 +51,7 @@ export function Navbar() {
           <span className="leading-tight">{navigation.logoText}</span>
         </Link>
 
-        <div className="flex flex-col items-start gap-3 text-sm font-medium text-slate-600 md:flex-row md:items-center md:justify-center md:gap-8">
+        <div className="flex flex-col items-start gap-3 text-base font-semibold text-slate-700 md:flex-row md:items-center md:justify-center md:gap-9">
           {navigation.links.map((link) => (
             <Link
               key={link.href}

@@ -149,3 +149,12 @@ html {
     border: none;
   }
 }
+
+/* Hide Next.js development indicators */
+#__next-build-watcher,
+nextjs-portal,
+[data-nextjs-dialog],
+[data-nextjs-toast],
+[id^="__next"] {
+  display: none !important;
+}

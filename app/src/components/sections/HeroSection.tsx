@@ -3,10 +3,11 @@
 import { useCallback } from "react"
 import type { MouseEvent as ReactMouseEvent } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, useReducedMotion } from "motion/react"
 
 import { Button } from "@/components/ui/button"
-import { cn, smoothScrollToHash } from "@/lib/utils"
+import { smoothScrollToHash } from "@/lib/utils"
 import { heroContent } from "@/lib/constants"
 
 export function HeroSection() {
@@ -30,60 +31,83 @@ export function HeroSection() {
         <div className="pointer-events-none absolute inset-x-0 bottom-[-50%] h-[420px] w-full bg-gradient-to-t from-[#cab5d4]/30 via-transparent to-transparent blur-[90px]" />
       </div>
 
-      <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-6xl flex-col items-center justify-center gap-16 px-4 py-24 text-center sm:px-6 lg:px-8">
-        <motion.div
-          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
-          animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
-          className="space-y-10"
-        >
-          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
-            {heroContent.eyebrow}
-          </p>
-          <h1
-            id="hero-heading"
-            className="text-balance text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+      <div className="mx-auto flex min-h-screen max-w-6xl items-center px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+        <div className="grid w-full items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-12">
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col items-start gap-6 text-left"
           >
-            {heroContent.title}
-          </h1>
-          <p className="mx-auto max-w-2xl text-balance text-lg text-slate-600 sm:text-xl">
-            {heroContent.description}
-          </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-            <Button asChild className="min-w-[200px]">
-              <Link href={heroContent.primaryCta.href} onClick={handleCtaClick}>
-                {heroContent.primaryCta.label}
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="ghost"
-              className="min-w-[200px] border border-black/5 bg-white/50 backdrop-blur hover:bg-white"
-            >
-              <Link href={heroContent.secondaryCta.href} onClick={handleCtaClick}>
-                {heroContent.secondaryCta.label}
-              </Link>
-            </Button>
-          </div>
-        </motion.div>
-
-        <motion.dl
-          initial={prefersReducedMotion ? undefined : { opacity: 0 }}
-          animate={prefersReducedMotion ? undefined : { opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-          className="grid w-full gap-6 rounded-3xl border border-white/30 bg-white/60 p-8 text-left shadow-[0_35px_50px_-35px_rgba(15,23,42,0.3)] backdrop-blur md:grid-cols-3"
-        >
-          {heroContent.metrics.map((metric) => (
-            <div key={metric.label} className="space-y-2">
-              <dt className="text-sm font-medium uppercase tracking-[0.25em] text-slate-500">
-                {metric.label}
-              </dt>
-              <dd className="text-3xl font-semibold text-slate-900">
-                {metric.value}
-              </dd>
+            <div className="space-y-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
+                {heroContent.eyebrow}
+              </p>
+              <h1
+                id="hero-heading"
+                className="text-balance text-left text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem]"
+              >
+                {heroContent.title}
+              </h1>
+              <p className="max-w-xl text-left text-lg text-slate-600 sm:text-xl">
+                {heroContent.description}
+              </p>
             </div>
-          ))}
-        </motion.dl>
+
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-5">
+              <Button asChild className="min-w-[180px]">
+                <Link href={heroContent.primaryCta.href} onClick={handleCtaClick}>
+                  {heroContent.primaryCta.label}
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="ghost"
+                className="min-w-[180px] border border-black/5 bg-white/60 text-slate-900 backdrop-blur transition hover:bg-white"
+              >
+                <Link href={heroContent.secondaryCta.href} onClick={handleCtaClick}>
+                  {heroContent.secondaryCta.label}
+                </Link>
+              </Button>
+            </div>
+
+            <motion.dl
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 12 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+              className="flex w-full max-w-xl flex-wrap items-center gap-4 rounded-2xl border border-white/60 bg-white/85 px-5 py-4 text-left shadow-[0_25px_45px_-35px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:gap-6"
+            >
+              {heroContent.metrics.map((metric) => (
+                <div key={metric.label} className="space-y-1">
+                  <dt className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+                    {metric.label}
+                  </dt>
+                  <dd className="text-2xl font-semibold text-slate-900">
+                    {metric.value}
+                  </dd>
+                </div>
+              ))}
+            </motion.dl>
+          </motion.div>
+
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 32 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+            className="relative mx-auto w-full max-w-md"
+          >
+            <div className="relative aspect-[9/18] w-full overflow-hidden">
+              <Image
+                src="/images/juliet-voice.png"
+                alt="Juliet voice interface with conversation controls"
+                fill
+                className="object-contain"
+                priority
+                sizes="(max-width: 768px) 100vw, 448px"
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

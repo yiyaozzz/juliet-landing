@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     loaderFile: "./src/lib/cloudflare-image-loader.ts",
   },
   outputFileTracingRoot: path.resolve(__dirname),
+  devIndicators: {
+    buildActivity: false,
+    buildActivityPosition: "bottom-right",
+  },
 };
 
 export default nextConfig;
