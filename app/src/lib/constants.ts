@@ -225,7 +225,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
 ];
 
 export const navigation: Navigation = {
-  logoText: "Juliet",
+  logoText: "First Date Labs",
   links: [
     { label: "Home", href: "/" },
     { label: "Press", href: "/press" },

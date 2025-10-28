@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { useCallback } from "react"
-import type { MouseEvent as ReactMouseEvent } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { motion, useReducedMotion } from "motion/react"
+import { useCallback } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
 
-import { Button } from "@/components/ui/button"
-import { smoothScrollToHash } from "@/lib/utils"
-import { heroContent } from "@/lib/constants"
+import { Button } from "@/components/ui/button";
+import { smoothScrollToHash } from "@/lib/utils";
+import { heroContent } from "@/lib/constants";
 
 export function HeroSection() {
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useReducedMotion();
 
   const handleCtaClick = useCallback(
     (event: ReactMouseEvent<HTMLAnchorElement>) => {
-      smoothScrollToHash(event)
+      smoothScrollToHash(event);
     },
     []
-  )
+  );
 
   return (
     <section
@@ -32,7 +32,7 @@ export function HeroSection() {
       </div>
 
       <div className="mx-auto flex min-h-screen max-w-6xl items-center px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="grid w-full items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-12">
+        <div className="grid w-full items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] lg:gap-12">
           <motion.div
             initial={prefersReducedMotion ? undefined : { opacity: 0, y: 28 }}
             animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -40,12 +40,12 @@ export function HeroSection() {
             className="flex flex-col items-start gap-6 text-left"
           >
             <div className="space-y-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
+              <p className="text-sm font-semibold tracking-[0.3em] text-slate-500 uppercase">
                 {heroContent.eyebrow}
               </p>
               <h1
                 id="hero-heading"
-                className="text-balance text-left text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem]"
+                className="text-left text-4xl leading-tight font-bold tracking-tight text-balance text-slate-900 sm:text-5xl lg:text-[3.5rem]"
               >
                 {heroContent.title}
               </h1>
@@ -56,7 +56,10 @@ export function HeroSection() {
 
             <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-5">
               <Button asChild className="min-w-[180px]">
-                <Link href={heroContent.primaryCta.href} onClick={handleCtaClick}>
+                <Link
+                  href={heroContent.primaryCta.href}
+                  onClick={handleCtaClick}
+                >
                   {heroContent.primaryCta.label}
                 </Link>
               </Button>
@@ -65,7 +68,10 @@ export function HeroSection() {
                 variant="ghost"
                 className="min-w-[180px] border border-black/5 bg-white/60 text-slate-900 backdrop-blur transition hover:bg-white"
               >
-                <Link href={heroContent.secondaryCta.href} onClick={handleCtaClick}>
+                <Link
+                  href={heroContent.secondaryCta.href}
+                  onClick={handleCtaClick}
+                >
                   {heroContent.secondaryCta.label}
                 </Link>
               </Button>
@@ -79,7 +85,7 @@ export function HeroSection() {
             >
               {heroContent.metrics.map((metric) => (
                 <div key={metric.label} className="space-y-1">
-                  <dt className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+                  <dt className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">
                     {metric.label}
                   </dt>
                   <dd className="text-2xl font-semibold text-slate-900">
@@ -94,7 +100,7 @@ export function HeroSection() {
             initial={prefersReducedMotion ? undefined : { opacity: 0, y: 32 }}
             animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-md"
+            className="relative mx-auto w-full max-w-[360px]"
           >
             <div className="relative aspect-[9/18] w-full overflow-hidden">
               <Image
@@ -103,14 +109,14 @@ export function HeroSection() {
                 fill
                 className="object-contain"
                 priority
-                sizes="(max-width: 768px) 100vw, 448px"
+                sizes="(max-width: 768px) 100vw, 360px"
               />
             </div>
           </motion.div>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default HeroSection
+export default HeroSection;
