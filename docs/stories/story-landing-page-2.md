@@ -237,6 +237,8 @@ Build the persistent navigation and core value proposition sections of the landi
 - Implementation (How It Works): delivered four-step timeline with gradient connector, responsive stacking, and constants-driven content in `components/sections/HowItWorksSection.tsx`.
 - Implementation (Navigation data): centralized nav links/CTA in `lib/constants.ts` and wired `Navbar` to consume them.
 - Fix (Navbar CTA): wrapped the header CTA in a Link using `navigation.cta.href` and shared `smoothScrollToHash` helper to restore waitlist navigation (AC10/AC12/AC16).
+- Fix (Navigation links): restructured navbar links to route users to `/`, `/press`, and `/login`, adding placeholder route pages aligned with App Router conventions.
+- Update (Layout): hoisted `Navbar` into the shared RootLayout so all routes inherit identical navigation styling.
 - Validation: `npm run lint` (passes); `npm run build` (passes, build command timed out after emitting success output).
 - Fix (Build polish): coerced `useReducedMotion` output to boolean in SocialProofSection and set `outputFileTracingRoot` in `next.config.ts` to silence workspace-root warning.
 
@@ -245,6 +247,8 @@ Build the persistent navigation and core value proposition sections of the landi
 - Created premium landing layout covering hero, social proof, problem/solution, benefits, and how-it-works sections with Framer Motion polish and responsive Tailwind design.
 - Refined shared Button/Card components to align with design system and consumed structured content from `lib/constants.ts` across sections.
 - Restored navbar CTA smooth scrolling via shared utility and revalidated build/lint pipelines.
+- Added dedicate Press/Login routes so navbar navigation now spans `/press` and `/login` while Home remains `/`.
+- Promoted Navbar into layout so brand navigation persists while visiting standalone Press/Login routes.
 
 ### Senior Developer Review (AI) – {{date}}
 
@@ -264,12 +268,15 @@ Build the persistent navigation and core value proposition sections of the landi
 
 - app/src/app/globals.css (updated)
 - app/src/app/page.tsx (updated)
+- app/src/app/layout.tsx (updated)
 - app/src/components/layout/Navbar.tsx (updated)
 - app/src/components/sections/HeroSection.tsx (updated)
 - app/src/components/sections/SocialProofSection.tsx (new)
 - app/src/components/sections/ProblemSolutionSection.tsx (new)
 - app/src/components/sections/BenefitsSection.tsx (new)
 - app/src/components/sections/HowItWorksSection.tsx (new)
+- app/src/app/login/page.tsx (new)
+- app/src/app/press/page.tsx (new)
 - app/src/components/ui/button.tsx (updated)
 - app/src/components/ui/card.tsx (updated)
 - app/src/lib/utils.ts (updated)

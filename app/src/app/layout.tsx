@@ -1,14 +1,17 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
-import { Poppins } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from "next"
+import type { ReactNode } from "react"
+import { Poppins } from "next/font/google"
+
+import { Navbar } from "@/components/layout/Navbar"
+
+import "./globals.css"
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
-});
+})
 
 export const metadata: Metadata = {
   title: "Juliet: Your AI Dating Coach for Real Connections",
@@ -22,16 +25,19 @@ export const metadata: Metadata = {
     url: "https://firstdatelabs.com",
     siteName: "First Date Labs",
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: ReactNode;
+  children: ReactNode
 }>) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-[#fffdf6] text-slate-900">
+        <Navbar />
+        <main>{children}</main>
+      </body>
     </html>
-  );
+  )
 }

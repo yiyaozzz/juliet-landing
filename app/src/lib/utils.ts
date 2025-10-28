@@ -9,11 +9,21 @@ export function cn(...inputs: ClassValue[]) {
 
 export function smoothScrollToHash(event: MouseEvent<HTMLAnchorElement>) {
   const href = event.currentTarget.getAttribute("href")
-  if (!href || !href.startsWith("#")) {
+  if (!href) {
     return
   }
 
-  const targetId = href.replace(/^#/, "")
+  const targetUrl = new URL(href, window.location.href)
+  if (!targetUrl.hash) {
+    return
+  }
+
+  const isSamePath = targetUrl.pathname === window.location.pathname
+  if (!isSamePath) {
+    return
+  }
+
+  const targetId = targetUrl.hash.replace(/^#/, "")
   if (!targetId) {
     return
   }
@@ -25,4 +35,5 @@ export function smoothScrollToHash(event: MouseEvent<HTMLAnchorElement>) {
 
   event.preventDefault()
   targetElement.scrollIntoView({ behavior: "smooth", block: "start" })
+  window.history.replaceState(null, "", `${targetUrl.pathname}${targetUrl.hash}`)
 }

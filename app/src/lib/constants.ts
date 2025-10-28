@@ -227,11 +227,11 @@ export const howItWorksSteps: HowItWorksStep[] = [
 export const navigation: Navigation = {
   logoText: "Juliet",
   links: [
-    { label: "Home", href: "#hero" },
-    { label: "Press", href: "#press" },
-    { label: "Login", href: "#login" },
+    { label: "Home", href: "/" },
+    { label: "Press", href: "/press" },
+    { label: "Login", href: "/login" },
   ],
-  cta: { label: "Get Early Access", href: "#waitlist" },
+  cta: { label: "Get Early Access", href: "/#waitlist" },
 };
 
 export const pricingTiers: PricingTier[] = [];
