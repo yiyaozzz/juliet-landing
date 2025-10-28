@@ -47,6 +47,7 @@
 
 :root {
   --radius: 0.625rem;
+  --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --background: #fffdf6;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

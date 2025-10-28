@@ -9,8 +9,7 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingRoot: path.resolve(__dirname),
   devIndicators: {
-    buildActivity: false,
-    buildActivityPosition: "bottom-right",
+    position: "bottom-right",
   },
 };
 

@@ -19,7 +19,7 @@ A premium, borderless landing page for Juliet (First Date Labs) built with Next.
 - Tailwind tokens live in `tailwind.config.ts`, mapping project colors (`#fffdf6`, `#f9d544`, `#cab5d4`, `#ffe362`), Poppins font family, and premium shadows.
 - Global CSS (`src/app/globals.css`) sets CSS variables, borderless defaults, and custom utilities (`.shadow-soft`, `.shadow-hover`, `.no-border`).
 - Static copy plus placeholder data for future sections sit in `src/lib/constants.ts` so Story 2+ can hydrate real sections without touching layout glue code.
-- Base layout (`src/app/layout.tsx`) wires the Poppins variable font, metadata, and SEO defaults. The landing skeleton in `src/app/page.tsx` references the constants to render hero, proof, pricing, and FAQ placeholders.
+- Base layout (`src/app/layout.tsx`) wires the locally hosted Poppins subsets (weights 400/600/700) found in `public/fonts/poppins/`. If you prefer variable fonts, swap in the official Poppins variable file and update `src/app/fonts.ts` accordingly.
 
 ## Cloudflare Deployment
 
@@ -55,3 +55,4 @@ Automated deploys run via GitHub Actions whenever `main` changes:
 
 - Use `npm run cf-typegen` whenever you add KV namespaces, R2 buckets, or environment bindings so server-side TypeScript stays accurate.
 - The repo keeps placeholder directories (`public/images`, `public/icons`, `src/components/sections`) tracked for the follow-up stories that add real assets and JSX sections.
+- Fonts: we ship subsetted Poppins 400/600/700 weights (`public/fonts/poppins/`). To regenerate, run `pyftsubset` against the source TTFs (see command examples in docs) or swap in a single variable file if you need the full weight range.

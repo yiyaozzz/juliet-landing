@@ -1,17 +1,9 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { Poppins } from "next/font/google"
-
 import { Navbar } from "@/components/layout/Navbar"
+import { poppins } from "./fonts"
 
 import "./globals.css"
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-poppins",
-  display: "swap",
-})
 
 export const metadata: Metadata = {
   title: "Juliet: Your AI Dating Coach for Real Connections",
