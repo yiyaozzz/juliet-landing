@@ -47,6 +47,7 @@
 
 :root {
   --radius: 0.625rem;
+  --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --background: #fffdf6;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -78,6 +79,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .dark {
@@ -124,6 +129,15 @@
 }
 
 @layer utilities {
+  @keyframes testimonial-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   .shadow-soft {
     box-shadow: var(--shadow-soft);
   }
@@ -135,4 +149,13 @@
   .no-border {
     border: none;
   }
+}
+
+/* Hide Next.js development indicators */
+#__next-build-watcher,
+nextjs-portal,
+[data-nextjs-dialog],
+[data-nextjs-toast],
+[id^="__next"] {
+  display: none !important;
 }
