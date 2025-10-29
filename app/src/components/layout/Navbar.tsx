@@ -88,7 +88,7 @@ export function Navbar() {
     <header
       className={cn(
         "sticky top-0 z-50 w-full border-b border-white/10 transition-shadow duration-300",
-        "bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60",
+        "bg-background/80 backdrop-blur-xl supports-backdrop-filter:bg-background/60",
         scrolled
           ? "shadow-[0_12px_40px_-20px_rgba(15,23,42,0.35)]"
           : "shadow-none"

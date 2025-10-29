@@ -39,17 +39,21 @@ export function HeroSection() {
             transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
             className="flex flex-col items-start gap-6 text-left"
           >
-            <div className="space-y-5">
-              <p className="text-sm font-semibold tracking-[0.3em] text-slate-500 uppercase">
+            <div className="space-y-4">
+              <p className="text-sm font-normal tracking-[0.24em] text-slate-500 uppercase">
                 {heroContent.eyebrow}
               </p>
               <h1
                 id="hero-heading"
-                className="text-left text-4xl leading-tight font-bold tracking-tight text-balance text-slate-900 sm:text-5xl lg:text-[3.5rem]"
+                className="text-left text-3xl leading-tight font-bold tracking-tight text-balance text-slate-900 sm:text-[2.5rem] lg:text-[3rem]"
               >
-                {heroContent.title}
+                {heroContent.title.map((line, index) => (
+                  <span key={index} className="block">
+                    {line}
+                  </span>
+                ))}
               </h1>
-              <p className="max-w-xl text-left text-lg text-slate-600 sm:text-xl">
+              <p className="max-w-xl text-left text-base text-slate-600 sm:text-lg">
                 {heroContent.description}
               </p>
             </div>
@@ -76,24 +80,6 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-
-            <motion.dl
-              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 12 }}
-              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-              className="flex w-full max-w-xl flex-wrap items-center gap-4 rounded-2xl border border-white/60 bg-white/85 px-5 py-4 text-left shadow-[0_25px_45px_-35px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:gap-6"
-            >
-              {heroContent.metrics.map((metric) => (
-                <div key={metric.label} className="space-y-1">
-                  <dt className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">
-                    {metric.label}
-                  </dt>
-                  <dd className="text-2xl font-semibold text-slate-900">
-                    {metric.value}
-                  </dd>
-                </div>
-              ))}
-            </motion.dl>
           </motion.div>
 
           <motion.div

@@ -5,11 +5,10 @@ export type Cta = {
 
 export type HeroContent = {
   eyebrow: string;
-  title: string;
+  title: string[];
   description: string;
   primaryCta: Cta;
   secondaryCta: Cta;
-  metrics: { label: string; value: string }[];
 };
 
 export type LandingSection = {
@@ -66,16 +65,11 @@ export type FaqItem = {
 
 export const heroContent: HeroContent = {
   eyebrow: "Built for intentional daters",
-  title: "Get more second dates and build real connections.",
+  title: ["Get more dates", "Build real connections"],
   description:
     "Meet Juliet: an AI dating coach that helps you practice real first-date conversations, get instant feedback, and prepare for your next date—so you can build meaningful connections.",
   primaryCta: { label: "Get Early Access", href: "#waitlist" },
   secondaryCta: { label: "See how it works", href: "#how-it-works" },
-  metrics: [
-    { label: "Second-date uplift", value: "+28%" },
-    { label: "Practice drills completed", value: "125K" },
-    { label: "Avg. response time", value: "140ms" },
-  ],
 };
 
 export const landingSections: LandingSection[] = [
