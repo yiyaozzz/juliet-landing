@@ -96,7 +96,9 @@
         "run",
         "exa",
         "--key",
-        "8a57105d-b3a6-4fa8-b06e-945f53af38f2"
+        "8a57105d-b3a6-4fa8-b06e-945f53af38f2",
+        "--profile",
+        "jittery-hyena-8pczBr"
       ]
     },
     "chrome-devtools": {
