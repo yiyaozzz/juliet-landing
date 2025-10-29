@@ -20,6 +20,7 @@ A premium, borderless landing page for Juliet (First Date Labs) built with Next.
 - Global CSS (`src/app/globals.css`) sets CSS variables, borderless defaults, and custom utilities (`.shadow-soft`, `.shadow-hover`, `.no-border`).
 - Static copy plus placeholder data for future sections sit in `src/lib/constants.ts` so Story 2+ can hydrate real sections without touching layout glue code.
 - Base layout (`src/app/layout.tsx`) wires the locally hosted Poppins subsets (weights 400/600/700) found in `public/fonts/poppins/`. If you prefer variable fonts, swap in the official Poppins variable file and update `src/app/fonts.ts` accordingly.
+- Cloudflare image resizing is opt-in: set `NEXT_PUBLIC_ENABLE_CF_IMAGE_RESIZING=true` when your zone has Image Resizing enabled. Otherwise the loader falls back to serving the original asset paths.
 - The custom Next.js image loader (`src/lib/cloudflare-image-loader.ts`) defaults to serving assets directly. Set `NEXT_PUBLIC_ENABLE_CF_IMAGE_RESIZING=true` in the environment to opt in to Cloudflare Image Resizing (requires the feature on your zone).
 
 ## Cloudflare Deployment

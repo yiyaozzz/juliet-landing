@@ -1,4 +1,4 @@
-const normalizeSrc = (src: string) => (src.startsWith("/") ? src : `/${src}`);
+const normalizeSrc = (src: string) => (src.startsWith("/") ? src.slice(1) : src)
 
 export default function cloudflareLoader({
   src,
@@ -9,22 +9,26 @@ export default function cloudflareLoader({
   width: number;
   quality?: number;
 }) {
-  if (process.env.NODE_ENV !== "development") {
+  const isDev = process.env.NODE_ENV === "development"
+  const enableCloudflareResizing =
+    process.env.NEXT_PUBLIC_ENABLE_CF_IMAGE_RESIZING === "true"
+
+  if (!isDev && enableCloudflareResizing) {
     const params = [`width=${width}`];
     if (quality) {
       params.push(`quality=${quality}`);
     }
 
     if (src.startsWith("http://") || src.startsWith("https://")) {
-      return `/cdn-cgi/image/${params.join(",")}/${src}`;
+      return `/cdn-cgi/image/${params.join(",")}/${src}`
     }
 
-    return `/cdn-cgi/image/${params.join(",")}${normalizeSrc(src)}`;
+    return `/cdn-cgi/image/${params.join(",")}/${normalizeSrc(src)}`
   }
 
   if (src.startsWith("http://") || src.startsWith("https://")) {
-    return src;
+    return src
   }
 
-  return normalizeSrc(src);
+  return `/${normalizeSrc(src)}`
 }
